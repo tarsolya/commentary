@@ -1,0 +1,61 @@
+Commentary
+=================
+
+Provides commenting functionality for ActiveRecord models, with like / dislike and filtering capabilities.
+
+== Install
+
+   * As a plugin:
+ 
+     $ script/plugin install http://github.com/tarsolya/commentary.git
+
+   * As a gem:
+   
+     $ sudo gem install --source=http://gemcutter.org commentary
+
+     # environment.rb
+     config.gem 'commentary', :lib => 'commentary', :source => "http://gemcutter.org"
+   
+== Usage
+
+  $ script/generate commentary
+  $ rake db:migrate
+
+  # app/models/post.rb
+  class Model < ActiveRecord::Base
+ 	  has_commentary
+  end
+ 
+  # Add a Comment
+  obj = Post.create
+  obj.comments.create(:title => "My comment", :body => "The quick brown fox jumps over the lazy dog.")
+
+  # Retrieve comments
+  obj = Post.find(:first)
+  comments = obj.comments.recent.all
+  
+  # Filter comments
+  obj = Post.find(:first)
+  comments = obj.comments.recent.only_positive
+  comments = obj.comments.below_treshold(10)
+  comments = obj.comments.above_treshold(5)
+  comments = obj.comments.starting_from(0).in_range_of(5)
+  
+  # Like / dislike
+  # If you have current_user / @current_user defined, the user automatically gets assigned to the rating, so user's can only rate each comment once.
+  comment = Comment.find(1)
+  comment.like!
+  comment.dislike!
+  
+  # If you don't have any of the above defined
+  comment.like!(:user_id)
+  comment.dislike!(:user_id)
+
+== TODO
+
+  * Mark comments as spam
+  
+== CREDITS
+
+  * *Jack Dempsey* for the great _acts_as_commentable_ plugin, which I've used as a base for _commentary_.
+  
