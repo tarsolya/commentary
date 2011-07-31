@@ -29,8 +29,5 @@ module XPN
   end
 end
 
-if defined?(ActiveRecord::Base)
-  ActiveRecord::Base.extend XPN::Commentary
-  ActiveRecord::Base.send :include, XPN::Commentary
-end
+ActiveRecord::Base.extend XPN::Commentary
 

@@ -13,20 +13,17 @@ module Commentary
 
     def self.included(base)
       base.extend Finders
-      base.send :include, Scopes
-    end
 
-    module Scopes
-      named_scope :in_order, {:order => 'created_at ASC'}
-      named_scope :recent, {:order => "created_at DESC"}
-      named_scope :limit, lambda {|limit| {:limit => limit}}
+      base.named_scope :in_order, {:order => 'created_at ASC'}
+      base.named_scope :recent, {:order => "created_at DESC"}
+      base.named_scope :limit, lambda {|limit| {:limit => limit}}
 
-      named_scope :only_positive, {:conditions => ["delta >= 0"]}
-      named_scope :only_negative, {:conditions => ["delta < 0"]}
+      base.named_scope :only_positive, {:conditions => ["delta >= 0"]}
+      base.named_scope :only_negative, {:conditions => ["delta < 0"]}
 
-      named_scope :above_rating, lambda {|delta| {:conditions => ["delta > ?", delta]}}
-      named_scope :below_rating, lambda {|delta| {:conditions => ["delta < ?", delta]}}
-      named_scope :between_ratings, lambda {|min, max| {:conditions => ["delta > ? AND delta < ?", min, max]}}
+      base.named_scope :above_rating, lambda {|delta| {:conditions => ["delta > ?", delta]}}
+      base.named_scope :below_rating, lambda {|delta| {:conditions => ["delta < ?", delta]}}
+      base.named_scope :between_ratings, lambda {|min, max| {:conditions => ["delta > ? AND delta < ?", min, max]}}
     end
 
     module Finders
