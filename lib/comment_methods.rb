@@ -13,7 +13,7 @@ module Commentary
 
     def self.included(base)
       base.extend Finders
-      base.extend Scopes
+      base.send :include, Scopes
     end
 
     module Scopes
