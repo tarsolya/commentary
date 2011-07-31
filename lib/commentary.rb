@@ -1,5 +1,6 @@
 # Commentary
 #
+require 'active_record'
 require 'commentable_methods'
 require 'comment_methods'
 require 'rating_methods'
@@ -28,5 +29,8 @@ module XPN
   end
 end
 
-ActiveRecord::Base.send(:extend, XPN::Commentary)
+if defined?(ActiveRecord::Base)
+  ActiveRecord::Base.extend XPN::Commentary
+  ActiveRecord::Base.send :include, XPN::Commentary
+end
 
