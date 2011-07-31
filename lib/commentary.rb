@@ -13,13 +13,16 @@ module XPN
       :valid_method_names => [:like!, :dislike!]
     }.freeze
 
-    attr_accessor_with_default(:commentary_options, {}.merge(XPN::Commentary::DEFAULT_OPTIONS))
-
     def has_commentary(*args)
       self.commentary_options.merge!(args.extract_options!)
       has_many :comments, :as => :commentable, :dependent => :destroy
       include XPN::Commentary::Commentable::InstanceMethods
       extend XPN::Commentary::Commentable::SingletonMethods
+    end
+
+    attr_writer :commentary_options
+    def commentary_options
+      @commentary_options ||= {}.merge(XPN::Commentary::DEFAULT_OPTIONS)
     end
 
   end
