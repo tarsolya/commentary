@@ -14,10 +14,6 @@ module Commentary
     def self.included(base)
       base.extend Finders
 
-      base.scope :in_order, order("created_at ASC")
-      base.scope :recent, order("created_at DESC")
-      base.scope :limit, lambda { |limit| { :limit => limit } }
-
       base.scope :positive, lambda { { :conditions => ["delta >= 0"] } }
       base.scope :negative, lambda { { :conditions => ["delta < 0"] } }
 
