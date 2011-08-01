@@ -14,16 +14,16 @@ module Commentary
     def self.included(base)
       base.extend Finders
 
-      base.named_scope :in_order, {:order => 'created_at ASC'}
-      base.named_scope :recent, {:order => "created_at DESC"}
-      base.named_scope :limit, lambda {|limit| {:limit => limit}}
+      base.scope :in_order, order("created_at ASC")
+      base.scope :recent, order("created_at DESC")
+      base.scope :limit, lambda { |limit| { :limit => limit } }
 
-      base.named_scope :only_positive, {:conditions => ["delta >= 0"]}
-      base.named_scope :only_negative, {:conditions => ["delta < 0"]}
+      base.scope :positive, lambda { { :conditions => ["delta >= 0"] } }
+      base.scope :negative, lambda { { :conditions => ["delta < 0"] } }
 
-      base.named_scope :above_rating, lambda {|delta| {:conditions => ["delta > ?", delta]}}
-      base.named_scope :below_rating, lambda {|delta| {:conditions => ["delta < ?", delta]}}
-      base.named_scope :between_ratings, lambda {|min, max| {:conditions => ["delta > ? AND delta < ?", min, max]}}
+      base.scope :above_rating, lambda { |delta| { :conditions => ["delta > ?", delta] } }
+      base.scope :below_rating, lambda { |delta| { :conditions => ["delta < ?", delta] } }
+      base.scope :between_ratings, lambda { |min, max| { :conditions => ["delta > ? AND delta < ?", min, max] } }
     end
 
     module Finders
