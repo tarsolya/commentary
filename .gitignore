@@ -51,3 +51,4 @@ vendor
 vendor/ruby
 vendor/cache
 
+test/rails_root
