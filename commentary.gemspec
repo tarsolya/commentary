@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{commentary}
+  s.name = "commentary"
   s.version = "0.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Andras Tarsoly}]
-  s.date = %q{2011-09-01}
-  s.description = %q{A simple gem for managing comments on ActiveRecord models.}
-  s.email = %q{tarsolya@gmail.com}
+  s.authors = ["Andr\u{e1}s Tarsoly"]
+  s.date = "2012-01-04"
+  s.description = "A simple gem for managing comments on ActiveRecord models."
+  s.email = "tarsolya@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -43,11 +43,11 @@ Gem::Specification.new do |s|
     "test/test_helper.rb",
     "uninstall.rb"
   ]
-  s.homepage = %q{http://github.com/tarsolya/commentary}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.7}
-  s.summary = %q{Comments on ActiveRecord models.}
+  s.homepage = "http://github.com/tarsolya/commentary"
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.11"
+  s.summary = "Comments on ActiveRecord models."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -55,18 +55,18 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_runtime_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_runtime_dependency(%q<rails>, ["= 3.1.0"])
+      s.add_runtime_dependency(%q<rails>, ["~> 3.1.0"])
       s.add_runtime_dependency(%q<mysql2>, [">= 0.2.4"])
     else
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_dependency(%q<rails>, ["= 3.1.0"])
+      s.add_dependency(%q<rails>, ["~> 3.1.0"])
       s.add_dependency(%q<mysql2>, [">= 0.2.4"])
     end
   else
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-    s.add_dependency(%q<rails>, ["= 3.1.0"])
+    s.add_dependency(%q<rails>, ["~> 3.1.0"])
     s.add_dependency(%q<mysql2>, [">= 0.2.4"])
   end
 end
